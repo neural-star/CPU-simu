@@ -1,0 +1,16 @@
+[project]
+name = "cpu-simu"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=3.0.3",
+    "pyyaml>=6.0.3",
+    "rich>=15.0.0",
+    "ruff>=0.15.12",
+    "typer>=0.26.7",
+]
+
+[project.scripts]
+cpu-simu = "main:main"

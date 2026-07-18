@@ -2,6 +2,8 @@ from pathlib import Path
 
 def create_file(path: str):
     file_path = Path(path)
+
+    file_path.parent.mkdir(parents=True, exist_ok=True)
     
     if not file_path.exists():
         file_path.touch()

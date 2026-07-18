@@ -24,6 +24,9 @@ def run_simulator(name: str, path: str="ROM/ROM.txt", debug: bool=True):
     """
     run(name, path,debug)
 
-if __name__ == "__main__":
+def main():
     initialize()
     app()
+
+if __name__ == "__main__":
+    main()

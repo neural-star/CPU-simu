@@ -1,0 +1,37 @@
+name: Build Windows EXE with uv
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+
+    - name: Install Python
+      run: uv python install
+
+    - name: Install dependencies
+      run: |
+        uv pip install pyinstaller
+        uv sync
+
+    - name: Build EXE with PyInstaller
+      run: |
+        uv run pyinstaller main.py --onefile --paths=. --name=cpu-simu
+
+    - name: Upload EXE Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: cpu-simu-windows
+        path: dist/cpu-simu.exe
